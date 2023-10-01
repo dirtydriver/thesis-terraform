@@ -15,6 +15,10 @@ variable "pvt_key" {
   
 }
 
+variable "instance"{
+  
+}
+
 provider "digitalocean" {
     token=var.do_token
 }

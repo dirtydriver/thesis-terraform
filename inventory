@@ -1,0 +1,13 @@
+[kubernetes_master]
+kube-master-0 ansible_host=134.209.242.199 ansible_user=root
+kube-master-1 ansible_host=134.209.250.234 ansible_user=root
+
+
+[kubernetes_worker]
+kube-worker-0 ansible_host=157.230.19.181 ansible_user=root
+kube-worker-1 ansible_host=134.209.242.42 ansible_user=root
+kube-worker-2 ansible_host=134.209.244.48 ansible_user=root
+
+[docker_hosts:children]
+kubernetes_master
+kubernetes_worker

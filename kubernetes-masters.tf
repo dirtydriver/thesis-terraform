@@ -1,11 +1,11 @@
 
-resource "digitalocean_droplet" "kube-worker" {
+resource "digitalocean_droplet" "kube-master" {
 
-    count = var.worker
+    count = var.master
     image="ubuntu-20-04-x64"
-    name="kube-worker-${count.index}"
+    name="kube-master-${count.index}"
     region="fra1"
-    size="s-1vcpu-1gb"
+    size="s-4vcpu-8gb"
     private_networking= true
     ssh_keys = [
         data.digitalocean_ssh_key.zenbook.id
@@ -24,23 +24,23 @@ resource "digitalocean_droplet" "kube-worker" {
       "apt update",
       "apt upgrade -y",
       #Create link from volume to docker directory
-      "ln -s /mnt/docker_worker${count.index} /var/lib/docker"
+      "ln -s /mnt/docker_master${count.index} /var/lib/docker"
     ]
-  } 
-
+  }
 }
 
-resource "digitalocean_volume" "docker-worker" {
+resource "digitalocean_volume" "docker" {
   region                  = "fra1"
-  name                    = "docker-worker${count.index}"
+  name                    = "docker-master${count.index}"
   size                    = 20
   initial_filesystem_type = "ext4"
   description             = "Docker Storage"
-  count = var.worker
+  count = var.master
 }
 
-resource "digitalocean_volume_attachment" "kube-volumes-worker" {
-  count = var.worker
-  droplet_id = digitalocean_droplet.kube-worker[count.index].id
-  volume_id  = digitalocean_volume.docker-worker[count.index].id
+
+resource "digitalocean_volume_attachment" "kube-volumes-master" {
+  count = var.master
+  droplet_id = digitalocean_droplet.kube-master[count.index].id
+  volume_id  = digitalocean_volume.docker[count.index].id
 }

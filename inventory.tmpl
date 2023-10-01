@@ -12,3 +12,7 @@ ${dns} ansible_host=${kube-worker-ip[index]} ansible_user=root
 [docker_hosts:children]
 kubernetes_master
 kubernetes_worker
+
+[kubernetes_hosts:children]
+kubernetes_master
+kubernetes_worker

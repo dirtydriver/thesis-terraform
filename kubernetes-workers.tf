@@ -1,17 +1,17 @@
-resource "digitalocean_volume" "kube-master-volume" {
+resource "digitalocean_volume" "kube-worker-volume" {
   region                  = "fra1"
-  name                    = "kube-master-volume-${count.index}"
+  name                    = "kube-worker-volume-${count.index}"
   size                    = 20
   initial_filesystem_type = "ext4"
   description             = "Docker Storage"
   count = var.instance
 }
 
-resource "digitalocean_droplet" "kube-master" {
+resource "digitalocean_droplet" "kube-worker" {
 
     count = var.instance
     image="ubuntu-20-04-x64"
-    name="kube-master-${count.index}"
+    name="kube-worker-${count.index}"
     region="fra1"
     size="s-4vcpu-8gb"
     private_networking= true
@@ -39,15 +39,15 @@ resource "digitalocean_droplet" "kube-master" {
 
 resource "digitalocean_volume_attachment" "kube-volumes" {
   count = var.instance
-  droplet_id = digitalocean_droplet.kube-master[count.index].id
-  volume_id  = digitalocean_volume.kube-master-volume[count.index].id
+  droplet_id = digitalocean_droplet.kube-worker[count.index].id
+  volume_id  = digitalocean_volume.kube-worker-volume[count.index].id
 
   
   provisioner "remote-exec"{
 
     connection {
 
-    host = digitalocean_droplet.kube-master[count.index].ipv4_address
+    host = digitalocean_droplet.kube-worker[count.index].ipv4_address
     user = "root"
     type = "ssh"
     private_key = file(var.pvt_key)

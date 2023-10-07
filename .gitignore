@@ -13,6 +13,7 @@
 *.tfplan
 env.sh
 config
+.terraform/
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 

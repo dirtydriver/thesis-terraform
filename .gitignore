@@ -12,6 +12,7 @@
 *.tfstate*
 *.tfplan
 env.sh
+config
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 

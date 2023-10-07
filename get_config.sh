@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 CLUSTER_ID=$(terraform output cluster-id)
 curl -X GET \

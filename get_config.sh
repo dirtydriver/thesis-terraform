@@ -1,6 +1,6 @@
 #!/bin/sh
 
-CLUSTER_ID=$(cat cluster-id)
+CLUSTER_ID=$(cat cluster-id|tr -d '"')
 curl -X GET \
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer ${TF_VAR_do_token}" \

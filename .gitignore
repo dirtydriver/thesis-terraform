@@ -15,6 +15,7 @@ env.sh
 config
 .terraform/
 .terraform.lock.hcl
+cluster-id
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 

@@ -5,7 +5,6 @@ terraform {
       version = "2.3.0"
     }
     }
-    data "terraform_remote_state" "nexus" {
     backend "artifactory" {
     # URL of the nexus repository
     url      = "https://nexus.thepetruska.com/repository/" 
@@ -18,5 +17,5 @@ terraform {
     # the password of the username you provided
     password = var.backend_password 
     }
-    }
+    
 }

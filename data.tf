@@ -7,8 +7,8 @@
         # an unique path to for identification
         subpath  = "terraform"
         # an username that has permissions to the repository
-        username = var.backend_user
+        username = "${var.backend_user}"
         # the password of the username you provided
-        password = var.backend_password 
+        password = "${var.backend_password}"
         }
  }

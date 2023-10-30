@@ -5,5 +5,4 @@ terraform {
       version = "2.3.0"
     }
     }    
-    backend "artifactory" {}
 }

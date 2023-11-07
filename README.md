@@ -1,5 +1,5 @@
 # thesis-terraform
-
+A cluster létrehozásához szükséges terraform források találhatóak a repositoryban.
 
 ### Create plan
 ```

@@ -8,7 +8,7 @@ terraform {
 
     backend "artifactory" {
       # URL of the nexus repository
-      url      = "https://nexus.thepetruska.com/repository/" 
+      url      = "https://nexus.petruska.dev/repository/" 
       # the repository name you just created
       repo     = "raw_files" 
       # an unique path to for identification
